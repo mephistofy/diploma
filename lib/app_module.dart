@@ -14,10 +14,9 @@ class AppModule extends Module {
   // Provide all the routes for your module
   @override
   final List<ModularRoute> routes = [
-    //ChildRoute('/', child: (_, __) => Login()),
-    ChildRoute('/', child: (_, __) => App()),
+    ChildRoute('/login', child: (_, __) => Login()),
+    //ChildRoute('/', child: (_, __) => App()),
     ChildRoute('/home', child: (_, __) => App()),
-    ChildRoute('/logout', child: (_, __) => LogOut()),
 
     ChildRoute('/workers', child: (_, __) => App()),
     ChildRoute('/departments', child: (_, __) => App()),
