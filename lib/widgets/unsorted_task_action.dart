@@ -3,17 +3,18 @@ import 'package:diploma_v1/fake_data/roles.dart';
 import 'package:flutter/material.dart';
 
 /// Form widgets are stateful widgets
-class DepartmentUpdateForm extends StatefulWidget {
-  final department;
-  DepartmentUpdateForm({Key key, this.department}) : super(key: key);
+class UnsortedTaskUpdateForm extends StatefulWidget {
+  final unsortedTask;
+  UnsortedTaskUpdateForm({Key key, this.unsortedTask}) : super(key: key);
 
   @override
   _DepartmentUpdateFormState createState() => _DepartmentUpdateFormState();
 }
 
-class _DepartmentUpdateFormState extends State<DepartmentUpdateForm> {
+class _DepartmentUpdateFormState extends State<UnsortedTaskUpdateForm> {
   final globalFormKey = GlobalKey<FormState>();
   final scaffoldMessengerKey = GlobalKey<ScaffoldState>();
+  String departmentValue;
 
   void _handleUpdate(){
 
@@ -54,13 +55,14 @@ class _DepartmentUpdateFormState extends State<DepartmentUpdateForm> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    departmentValue = DEPARTMENTS_NAMES[0];
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
-      width: 800,
+      height: 600,
+      width: 1000,
       //color: Colors.red,
       child: ListView(
         children: <Widget>[
@@ -78,11 +80,11 @@ class _DepartmentUpdateFormState extends State<DepartmentUpdateForm> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Flexible(
-                          child: Text('Название отдела: '),
+                          child: Text('Отправитель: '),
                         ),
 
                         Flexible(
-                          child: Text(widget.department['name']),
+                          child: Text(widget.unsortedTask['sender']),
                         )
                       ],
                     ),
@@ -93,82 +95,56 @@ class _DepartmentUpdateFormState extends State<DepartmentUpdateForm> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Flexible(
-                          child: Text('Новое название отдела: '),
-                        ),
-
-                        Flexible(
-                            child: TextFormField(
-                              maxLines: 2,
-                              decoration: InputDecoration(
-                                  border: new OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-
-                                  ),
-                                  labelStyle: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 20,
-                                  ),
-                                  hintText: "Введите новое название...",
-                              ),
-                              key: Key("_name"),
-                              keyboardType: TextInputType.text,
-                              onSaved: (String value) {
-                                //_name = value;
-                              },
-                              validator: (value) {
-                                //if (value.isEmpty) {
-                                //return LOGIN_SCREEN_EMAIL_OR_LOGIN_REQUIRED;
-                                //}
-                                return null;
-                              },
-                            ),
-                        ),
-
-                      ],
-                    ),
-
-                    SizedBox(height: 50),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text('Дата создание отдела: '),
+                          child: Text('Дата получения: '),
                         ),
                         Flexible(
-                          child: Text(widget.department['created_at'].toString()),
+                          child: Text(widget.unsortedTask['created_at'].toString()),
                         )
                       ],
                     ),
 
                     SizedBox(height: 50),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text('Дата изменения отдела: '),
+                    SingleChildScrollView(
+                        child: Text(
+                          widget.unsortedTask['content'],
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
                         ),
-                        Flexible(
-                          child: Text(widget.department['updated_at'].toString()),
-                        )
-                      ],
                     ),
 
-                    SizedBox(height: 20),
+                    SizedBox(height: 50),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
                             onPressed: _delete,
-                            child: Text('Удалить отдел')
+                            child: Text('Направить в : ')
                         ),
 
-                        ElevatedButton(
-                            onPressed: _handleUpdate,
-                            child: Text('Обновить отдел')
-                        ),
+                        DropdownButton<String>(
+                          value: departmentValue,
+                          elevation: 16,
+                          style: const TextStyle(color: Colors.blueAccent),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.blueAccent,
+                          ),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              departmentValue = newValue;
+                            });
+                          },
+                          items: DEPARTMENTS_NAMES
+                              .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        )
                       ],
                     )
                   ],
