@@ -1,3 +1,6 @@
+import 'package:diploma_v1/screens/departments.dart';
+import 'package:diploma_v1/screens/people.dart';
+import 'package:diploma_v1/screens/unsorted_tasks.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:diploma_v1/screens/app.dart';
@@ -18,9 +21,9 @@ class AppModule extends Module {
     //ChildRoute('/', child: (_, __) => App()),
     ChildRoute('/home', child: (_, __) => App()),
 
-    ChildRoute('/workers', child: (_, __) => App()),
-    ChildRoute('/departments', child: (_, __) => App()),
-    ChildRoute('/unsorted_tasks', child: (_, __) => App()),
+    ChildRoute('/people', child: (_, __) => PeopleScreen()),
+    ChildRoute('/departments', child: (_, __) => Departments()),
+    ChildRoute('/unsorted_tasks', child: (_, __) => UnsourcedTasks()),
     ChildRoute('/tasks', child: (_, __) => Tasks()),
   ];
 

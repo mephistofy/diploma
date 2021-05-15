@@ -69,7 +69,7 @@ class SideDrawer extends StatelessWidget {
         ),
 
         ListTile(
-          leading: Icon(Icons.home),
+          leading: Icon(Icons.trending_up),
           title: Text('Статистика'),
           onTap: () => {
             Modular.to.pushNamed('/home')
@@ -78,7 +78,7 @@ class SideDrawer extends StatelessWidget {
 
         if (user.roles.contains('topManager') || user.roles.contains('sorter'))
           ListTile(
-            leading: Icon(Icons.shopping_cart),
+            leading: Icon(Icons.work_off_outlined),
             title: Text('Несортированные заявки'),
             onTap: () => {
               Modular.to.pushNamed('/unsorted_tasks')
@@ -87,7 +87,7 @@ class SideDrawer extends StatelessWidget {
 
         //if (!testRole.contains('sorter'))
           ListTile(
-            leading: Icon(Icons.shopping_cart),
+            leading: Icon(Icons.work_rounded),
             title: Text('Заявки'),
             onTap: () => {
               Modular.to.pushNamed('/tasks')
@@ -96,16 +96,16 @@ class SideDrawer extends StatelessWidget {
 
         if (user.roles.contains('manager') || user.roles.contains('topManager'))
           ListTile(
-            leading: Icon(Icons.border_color),
+            leading: Icon(Icons.people),
             title: Text('Сотрудники'),
             onTap: () => {
-              Modular.to.pushNamed('/workers')
+              Modular.to.pushNamed('/people')
             },
           ),
 
         if (user.roles.contains('manager') || user.roles.contains('topManager'))
           ListTile(
-            leading: Icon(Icons.exit_to_app),
+            leading: Icon(Icons.storage),
             title: Text('Отделы'),
             onTap: () => {
               Modular.to.pushNamed('/departments')
@@ -126,25 +126,26 @@ class SideDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: FutureBuilder<Widget>(
-        future: _contractCheck(context), // a previously-obtained Future<String> or null
-        builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
-          if (snapshot.hasData) {
-            return snapshot.data;
-          }
-          else if (snapshot.hasError){
-            return Text('error');
-          }
-          else {
-            return SizedBox(
-              child: CircularProgressIndicator(),
-              width: 60,
-              height: 60,
-            );
-          }
-        }
+      child: SingleChildScrollView(
+        child:       FutureBuilder<Widget>(
+            future: _contractCheck(context), // a previously-obtained Future<String> or null
+            builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+              if (snapshot.hasData) {
+                return snapshot.data;
+              }
+              else if (snapshot.hasError){
+                return Text('error');
+              }
+              else {
+                return SizedBox(
+                  child: CircularProgressIndicator(),
+                  width: 60,
+                  height: 60,
+                );
+              }
+            }
+        )
       )
-      //child: _contractCheck(context),
     );
   }
 }
