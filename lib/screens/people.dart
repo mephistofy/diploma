@@ -1,7 +1,8 @@
 import 'package:diploma_v1/fake_data/users.dart';
 import 'package:diploma_v1/side_drawers/app_bar.dart';
 import 'package:diploma_v1/side_drawers/side_drawers.dart';
-import 'package:diploma_v1/widgets/people_action.dart';
+import 'package:diploma_v1/widgets/users/add_user.dart';
+import 'package:diploma_v1/widgets/users/people_action.dart';
 import 'package:diploma_v1/widgets/search.dart';
 import 'package:flutter/material.dart';
 
@@ -26,14 +27,70 @@ class _PeopleScreenState extends State<PeopleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: SideDrawer(),
-        appBar: CustomAppBar(),
+        appBar: CustomAppBar('Сотрудники'),
         body:
         Column(
           children: <Widget>[
-            buildSearch(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                    child: buildSearch()
+                ),
+
+                SizedBox(
+                  width: 30.0,
+                ),
+                ElevatedButton(
+                    onPressed: performAddUser,//performAddDepartment,
+                    child: Text('Добавить сотрудника')
+                ),
+                SizedBox(
+                  width: 30.0,
+                ),
+              ],
+            ),
             body(),
           ],
         ),
+    );
+  }
+
+  void performAddUser(){
+    addUser(context);
+  }
+  Future<void> addUser(context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+            scrollable: true,
+            title: Center(
+              child: Text('Добавить сотрудника'),
+            ),
+            content: Stack(
+              overflow: Overflow.visible,
+              children: <Widget>[
+                Positioned(
+                  right: -50.0,
+                  top: -90.0,
+                  child: InkResponse(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CircleAvatar(
+                      child: Icon(Icons.close),
+                      backgroundColor: Colors.red,
+                    ),
+                  ),
+                ),
+
+                PeopleAddForm(),
+              ],
+            )
+        );
+      },
     );
   }
 

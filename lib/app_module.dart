@@ -24,7 +24,7 @@ class AppModule extends Module {
     ChildRoute('/people', child: (_, __) => PeopleScreen()),
     ChildRoute('/departments', child: (_, __) => Departments()),
     ChildRoute('/unsorted_tasks', child: (_, __) => UnsortedTasks()),
-    ChildRoute('/tasks', child: (_, __) => Tasks()),
+    ChildRoute('/tasks', child: (_, __) => TasksScreen()),
   ];
 
 }

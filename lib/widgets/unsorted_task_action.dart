@@ -61,7 +61,7 @@ class _DepartmentUpdateFormState extends State<UnsortedTaskUpdateForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
+      height: 400,
       width: 1000,
       //color: Colors.red,
       child: ListView(
@@ -114,7 +114,7 @@ class _DepartmentUpdateFormState extends State<UnsortedTaskUpdateForm> {
                         ),
                     ),
 
-                    SizedBox(height: 50),
+                    SizedBox(height: 150),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -54,8 +54,6 @@ class SideDrawer extends StatelessWidget {
     final object = await CustomSharedPrefs.getObject("user");
     final user = User.fromJson(object);
 
-    final userRoles = user.roles;
-
     return Column(
       children: <Widget>[
         Container(

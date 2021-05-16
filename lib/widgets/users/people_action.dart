@@ -212,7 +212,7 @@ class _PeopleUpdateFormState extends State<PeopleUpdateForm> {
                       ],
                     ),
 
-                    SizedBox(height: 20),
+                    SizedBox(height: 70),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

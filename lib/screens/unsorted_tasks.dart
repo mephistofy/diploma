@@ -1,8 +1,6 @@
-import 'package:diploma_v1/fake_data/departments.dart';
 import 'package:diploma_v1/fake_data/unsorted_tasks.dart';
 import 'package:diploma_v1/side_drawers/app_bar.dart';
 import 'package:diploma_v1/side_drawers/side_drawers.dart';
-import 'package:diploma_v1/widgets/department_action.dart';
 import 'package:diploma_v1/widgets/search.dart';
 import 'package:diploma_v1/widgets/unsorted_task_action.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +26,7 @@ class _UnsortedTasksState extends State<UnsortedTasks> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideDrawer(),
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar('Несортированные заявки'),
       body:
       Column(
         children: <Widget>[

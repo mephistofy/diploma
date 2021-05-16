@@ -1,7 +1,8 @@
 import 'package:diploma_v1/fake_data/departments.dart';
 import 'package:diploma_v1/side_drawers/app_bar.dart';
 import 'package:diploma_v1/side_drawers/side_drawers.dart';
-import 'package:diploma_v1/widgets/department_action.dart';
+import 'package:diploma_v1/widgets/departments/department_top_manager/department_action.dart';
+import 'package:diploma_v1/widgets/departments/department_top_manager/department_add.dart';
 import 'package:diploma_v1/widgets/search.dart';
 import 'package:flutter/material.dart';
 
@@ -26,14 +27,71 @@ class _DepartmentsState extends State<Departments > {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideDrawer(),
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar('Отделы'),
       body:
       Column(
         children: <Widget>[
-          buildSearch(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                  child: buildSearch()
+              ),
+
+              SizedBox(
+                width: 30.0,
+              ),
+              ElevatedButton(
+                  onPressed: performAddDepartment,
+                  child: Text('Добавить отдел')
+              ),
+              SizedBox(
+                width: 30.0,
+              ),
+            ],
+          ),
           body(),
         ],
       ),
+    );
+  }
+
+  void performAddDepartment(){
+    addDepartment(context);
+  }
+  
+  Future<void> addDepartment(context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+            scrollable: true,
+            title: Center(
+              child: Text('Создание нового отдела'),
+            ),
+            content: Stack(
+              overflow: Overflow.visible,
+              children: <Widget>[
+                Positioned(
+                  right: -50.0,
+                  top: -90.0,
+                  child: InkResponse(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CircleAvatar(
+                      child: Icon(Icons.close),
+                      backgroundColor: Colors.red,
+                    ),
+                  ),
+                ),
+
+                DepartmentAddForm(),
+              ],
+            )
+        );
+      },
     );
   }
 
