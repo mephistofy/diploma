@@ -139,21 +139,6 @@ class _PeopleScreenState extends State<PeopleScreen> {
             itemBuilder: (BuildContext context, int index){
               final user = peopleList[index];
               return buildUser(user);
-              /*return
-                Card(
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: CircleAvatar(
-                            radius: 30,
-                            backgroundImage: NetworkImage(peopleList[index]['avatar'])),
-                        title: Text(peopleList[index]['fullname']),
-                        subtitle: Text(peopleList[index]['email']),
-                        trailing: Text(peopleList[index]['department_name']),
-                      )
-                    ],
-                  ),
-                );*/
             }
         )
     );

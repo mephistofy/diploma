@@ -1,9 +1,11 @@
+import 'departments.dart';
+
 var date = DateTime.utc(1989, 11, 9);
 
 var fakeUsers = [
   {
     "id": 1,
-    "department_name": "department1",
+    "department_name": DEPARTMENTS_NAMES[0],
     "roles": ["Менеджер"],
     "fullname": "Test1 Test1",
     "email": "test1@example.com",
@@ -24,8 +26,8 @@ var fakeUsers = [
 
   {
     "id": 3,
-    "roles": ["Сортироващик"],
-    "fullname": "Sorter Test3",
+    "roles": ["Менеджер"],
+    "fullname": "Worker Test3",
     "email": "test3@example.com",
     "created_at": date,
     "updated_at": date,
@@ -34,7 +36,7 @@ var fakeUsers = [
 
   {
     "id": 4,
-    "department_name": "department1",
+    "department_name": DEPARTMENTS_NAMES[0],
     "roles": ["Работник"],
     "fullname": "Test4 Test4",
     "email": "test4@example.com",
@@ -45,7 +47,7 @@ var fakeUsers = [
 
   {
     "id": 5,
-    "department_name": "department2",
+    "department_name": DEPARTMENTS_NAMES[1],
     "roles": ["Работник"],
     "fullname": "Test5 Test5",
     "email": "test5@example.com",
@@ -56,7 +58,7 @@ var fakeUsers = [
 
   {
     "id": 6,
-    "department_name": "department2",
+    "department_name": DEPARTMENTS_NAMES[3],
     "roles": ["Работник"],
     "fullname": "Test6 Test6",
     "email": "test6@example.com",
@@ -67,7 +69,7 @@ var fakeUsers = [
 
   {
     "id": 7,
-    "department_name": "department3",
+    "department_name": DEPARTMENTS_NAMES[2],
     "roles": ["Работник"],
     "fullname": "Test7 Test7",
     "email": "test7@example.com",

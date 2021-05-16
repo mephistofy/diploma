@@ -7,6 +7,7 @@ const DEPARTMENTS_NAMES = [
   'department4',
   'department5',
   'department6',
+  'department7',
 ];
 
 var DEPARTMENTS_FAKE = [

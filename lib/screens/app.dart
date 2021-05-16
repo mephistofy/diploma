@@ -1,3 +1,5 @@
+import 'package:diploma_v1/widgets/home/invitations.dart';
+import 'package:diploma_v1/widgets/home/requests.dart';
 import 'package:flutter/material.dart';
 
 import 'package:diploma_v1/side_drawers/side_drawers.dart';
@@ -45,12 +47,8 @@ class App extends StatelessWidget {
                       child: TabBarView(
                         children: [
                           Statistics(),
-                          Center(
-                            //child: TasksWidget(),
-                          ),
-                          Center(
-                            //child: TasksWidget(),
-                          ),
+                          InvitationsScreen(),
+                          RequestsScreen(),
                         ],
                       )
                   )

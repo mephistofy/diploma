@@ -8,10 +8,10 @@ class UnsortedTaskUpdateForm extends StatefulWidget {
   UnsortedTaskUpdateForm({Key key, this.unsortedTask}) : super(key: key);
 
   @override
-  _DepartmentUpdateFormState createState() => _DepartmentUpdateFormState();
+  _UnsortedTaskUpdateFormState createState() => _UnsortedTaskUpdateFormState();
 }
 
-class _DepartmentUpdateFormState extends State<UnsortedTaskUpdateForm> {
+class _UnsortedTaskUpdateFormState extends State<UnsortedTaskUpdateForm> {
   final globalFormKey = GlobalKey<FormState>();
   final scaffoldMessengerKey = GlobalKey<ScaffoldState>();
   String departmentValue;
