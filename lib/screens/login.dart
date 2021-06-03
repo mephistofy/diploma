@@ -85,7 +85,15 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
-                  border: Border.all(color: Colors.red)
+                  border: Border.all(color: Colors.black),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 10,
+                    blurRadius: 10,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
               ),
 
               child: SafeArea(
@@ -102,6 +110,9 @@ class _Login extends State<Login> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              SizedBox(
+                                height: 50.0,
+                              ),
                               TextFormField(
                                 key: Key("_username"),
                                 decoration: InputDecoration(labelText: LOGIN_SCREEN_EMAIL_OR_LOGIN),
@@ -116,6 +127,11 @@ class _Login extends State<Login> {
                                   return null;
                                 },
                               ),
+
+                              SizedBox(
+                                height: 30.0,
+                              ),
+
                               TextFormField(
                                 decoration: InputDecoration(labelText: LOGIN_SCREEN_PASSWORD),
                                 obscureText: true,
@@ -130,14 +146,38 @@ class _Login extends State<Login> {
                                 },
                               ),
                               const SizedBox(height: 10.0),
-                              ButtonBar(
-                                children: <Widget>[
-                                  ElevatedButton(
-                                      onPressed: _handleSubmitted,
-                                      child: Text(LOGIN_SCREEN_SIGN_IN)
-                                  )
-                                ],
+
+                              SizedBox(
+                                height: 70.0,
                               ),
+
+                              Center(
+                                child: ElevatedButton(
+                                    onPressed: _handleSubmitted,
+                                  style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side: BorderSide(color: Colors.black),
+                                ),
+
+                              )
+                ),
+
+                                    child: Container(
+                                      height: 50.0,
+                                      width:  250.0,
+
+                                      child: Center(
+                                        child: Text(LOGIN_SCREEN_SIGN_IN),
+                                      )
+                                      ,
+                                    ),
+                                )
+
+                              ),
+
                             ],
                           ),
                         ]),

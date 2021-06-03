@@ -18,7 +18,7 @@ class _DepartmentAddFormState extends State<DepartmentAddForm> {
 
   }
 
-  void _delete(){
+  void _add(){
     _handleCreate();
   }
 

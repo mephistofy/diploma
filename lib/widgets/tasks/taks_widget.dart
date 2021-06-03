@@ -1,3 +1,4 @@
+import 'package:diploma_v1/helpers/box_decoration.dart';
 import 'package:diploma_v1/widgets/search.dart';
 import 'package:diploma_v1/widgets/tasks/unsorted_task_action.dart';
 import 'package:diploma_v1/widgets/tasks/unstartedTask.dart';
@@ -52,25 +53,28 @@ class _TasksDepartmentWidgetState extends State<TasksDepartmentWidget> {
     print(text);
     var newText;
 
-    if (MediaQuery.of(context).size.width < 600 ) {
-      newText = (text.length < 1000 ? text : text.substring(1, 1000) + '...');
-    } else if (MediaQuery.of(context).size.width < 750 ) {
-      newText = (text.length < 250 ? text : text.substring(1, 250) + '...');
-    } else if (MediaQuery.of(context).size.width < 900 ) {
-      newText = (text.length < 370 ? text : text.substring(1, 370) + '...');
-    } else if (MediaQuery.of(context).size.width < 1000 ) {
-      newText = (text.length < 250 ? text : text.substring(1, 250) + '...');
-    } else if (MediaQuery.of(context).size.width <= 1200 && MediaQuery.of(context).size.width >= 1000) {
-      newText = (text.length < 300 ? text : text.substring(1, 300) + '...');
-    } else if (MediaQuery.of(context).size.width < 1200 ){
-      newText = (text.length < 500 ? text : text.substring(1, 500) + '...');
+    var width = MediaQuery.of(context).size.width;
+
+    if (width < 600 ) {
+      newText = (text.length < 600 ? text : text.substring(0, 600) + '...');
+    } else if (width < 750 ) {
+      newText = (text.length < 80 ? text : text.substring(0, 80) + '...');
+    } else if (width < 900 ) {
+      newText = (text.length < 220 ? text : text.substring(0, 220) + '...');
+    } else if (width < 1000 ) {
+      newText = (text.length < 80 ? text : text.substring(0, 80) + '...');
+    } else if (width <= 1200 && width >= 1000) {
+      newText = (text.length < 150 ? text : text.substring(0, 150) + '...');
+    } else if (width < 1200 ){
+      newText = (text.length < 120 ? text : text.substring(0, 120) + '...');
     }
     else {
-      newText = (text.length < 200 ? text : text.substring(1, 200) + '...');
+      newText = (text.length < 80 ? text : text.substring(0, 80) + '...');
     }
 
     return Text(
-      newText,
+      '      ' + newText,
+      textAlign: TextAlign.justify,
       style: TextStyle(
         fontSize: 18.0,
       ),
@@ -97,6 +101,8 @@ class _TasksDepartmentWidgetState extends State<TasksDepartmentWidget> {
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
             scrollable: true,
             title: Center(
               child: Text(task['id'].toString()),
@@ -132,10 +138,10 @@ class _TasksDepartmentWidgetState extends State<TasksDepartmentWidget> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: (MediaQuery.of(context).size.width~/300),
               // childAspectRatio: 19 / 12,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
+              mainAxisSpacing: 40.0,
+              crossAxisSpacing: 40.0,
             ),
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.all(40),
             itemCount: tasksList.length,
             itemBuilder: (BuildContext context, int index){
               final department = tasksList[index];
@@ -147,28 +153,24 @@ class _TasksDepartmentWidgetState extends State<TasksDepartmentWidget> {
 
   Widget textForTitle(task){
     return Text(
-      task['id'].toString() + "\n" +
-          task['sender'] + "\n" +
-          task['created_at'].toString() + "\n" +
+      task['id'].toString() + "\n" + "\n" +
+          task['sender'] + "\n" + "\n" +
+          task['created_at'].toString() + "\n" + "\n" +
           (task['executor'] != null
-              ? task['executor']['name']
+              ? task['executor']['name'] + "\n"
               : '')
       ,
       //unsortedTask['executor']['name'],
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 20.0,
+        fontWeight: FontWeight.bold,
+        fontSize: 16.0,
       ),
     );
   }
 
   Widget buildDepartment(task, context) => Ink(
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.blue, width: 4.0),
-      borderRadius: BorderRadius.circular(20.0),
-      //color: Colors.indigo[900],
-      //shape: BoxShape.circle,
-    ),
+    decoration: boxDecoration(),
     //color: Colors.lightGreen,
     child: ListTile(
         title: textForTitle(task),

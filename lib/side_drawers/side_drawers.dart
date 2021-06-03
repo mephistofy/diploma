@@ -6,10 +6,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:diploma_v1/constants/constants.dart';
 
-final List<String> roles = ['worker', 'sorter', 'manager', 'topManager'];
-final List<String> onlyWorker = ['worker'];
-final List<String> allRoles = ['worker', 'sorter', 'manager', 'topManager'];
-
 class SideDrawer extends StatelessWidget {
   Widget _getHeadSideDrawerWidget (final user){
     return Padding(
@@ -68,7 +64,7 @@ class SideDrawer extends StatelessWidget {
 
         ListTile(
           leading: Icon(Icons.trending_up),
-          title: Text('Статистика'),
+          title: Text('Главная страница'),
           onTap: () => {
             Modular.to.pushNamed('/home')
           },

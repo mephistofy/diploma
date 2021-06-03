@@ -1,6 +1,9 @@
 import 'package:diploma_v1/fake_data/departments.dart';
-import 'package:diploma_v1/fake_data/roles.dart';
+import 'package:diploma_v1/helpers/popup_response_message.dart';
+import 'package:diploma_v1/helpers/popup_width.dart';
+import 'package:diploma_v1/helpers/show_snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Form widgets are stateful widgets
 class UnsortedTaskUpdateForm extends StatefulWidget {
@@ -16,40 +19,17 @@ class _UnsortedTaskUpdateFormState extends State<UnsortedTaskUpdateForm> {
   final scaffoldMessengerKey = GlobalKey<ScaffoldState>();
   String departmentValue;
 
-  void _handleUpdate(){
+  var _url = 'https://vk.com/doc352392134_597187222?hash=336c48fd353cf6b090&dl=b068cf17ea0cb8bf7b';
 
+  void _handleRedirect(context){
+    redirect();
   }
 
-  void _delete(){
-    _handleDelete(context);
+  Future<void> redirect() async {
+    return responsePopup(context, 'Successful!', true);
   }
-  Future<void> _handleDelete(context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Вы уверены что хотите удалить отдел ?'),
 
-          actions: <Widget>[
-            TextButton(
-              child: Text('Да'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Нет'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  void _launchURL() async => await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
 
   @override
   void initState() {
@@ -61,83 +41,89 @@ class _UnsortedTaskUpdateFormState extends State<UnsortedTaskUpdateForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
-      width: 1000,
+      height: 600.0,
+      width: getWidth(context),
       //color: Colors.red,
-      child: ListView(
-        children: <Widget>[
+      child:
           Container(
             padding: EdgeInsets.all(10.0),
             child: Form(
               key: globalFormKey,
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text('Отправитель: '),
-                        ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Text('Отправитель: '),
+                      ),
 
-                        Flexible(
-                          child: Text(widget.unsortedTask['sender']),
-                        )
-                      ],
+                      Flexible(
+                        child: Text(widget.unsortedTask['sender']),
+                      )
+                    ],
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Text('Дата получения: '),
+                      ),
+
+                      Flexible(
+                        child: Text(widget.unsortedTask['created_at'].toString()),
+                      )
+                    ],
+                  ),
+
+                  Container(
+                    height: 250.0,
+                    child: SingleChildScrollView(
+                      child: Text(
+                        widget.unsortedTask['content'],
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
                     ),
+                  ),
 
-                    SizedBox(height: 50),
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.attachment),
+                        onPressed: _launchURL,
+                      ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text('Дата получения: '),
+                      Text('Показать вложения'),
+                    ],
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () => _handleRedirect(context),
+                          child: Text('Направить в : ')
+                      ),
+
+                      DropdownButton<String>(
+                        value: departmentValue,
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.blueAccent),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.blueAccent,
                         ),
-                        Flexible(
-                          child: Text(widget.unsortedTask['created_at'].toString()),
-                        )
-                      ],
-                    ),
-
-                    SizedBox(height: 50),
-
-                    SingleChildScrollView(
-                        child: Text(
-                          widget.unsortedTask['content'],
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
-                        ),
-                    ),
-
-                    SizedBox(height: 150),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                            onPressed: _delete,
-                            child: Text('Направить в : ')
-                        ),
-
-                        DropdownButton<String>(
-                          value: departmentValue,
-                          elevation: 16,
-                          style: const TextStyle(color: Colors.blueAccent),
-                          underline: Container(
-                            height: 2,
-                            color: Colors.blueAccent,
-                          ),
-                          onChanged: (String newValue) {
-                            setState(() {
-                              departmentValue = newValue;
-                            });
+                        onChanged: (String newValue) {
+                          setState(() {
+                            departmentValue = newValue;
+                          });
                           },
-                          items: DEPARTMENTS_NAMES
+                        items: DEPARTMENTS_NAMES
                               .map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -146,14 +132,11 @@ class _UnsortedTaskUpdateFormState extends State<UnsortedTaskUpdateForm> {
                           }).toList(),
                         )
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
-      ),
     );
   }
 }

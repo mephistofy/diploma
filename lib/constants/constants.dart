@@ -18,3 +18,5 @@ const String LOGIN_SCREEN_SIGN_IN = 'Войти';
 const String SOCKET_EXCEPTION = 'Нет интернет соединения либо же сервер не доступен :(';
 const String HTTP_EXCEPTION = 'Не верные данные :(';
 const String FORMAT_EXCEPTION = 'Плохой формат ответа :(';
+
+

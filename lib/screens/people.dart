@@ -65,6 +65,8 @@ class _PeopleScreenState extends State<PeopleScreen> {
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
             scrollable: true,
             title: Center(
               child: Text('Добавить сотрудника'),
@@ -100,6 +102,8 @@ class _PeopleScreenState extends State<PeopleScreen> {
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
           scrollable: true,
           title: Center(
            child: Text(user['fullname']),
@@ -157,10 +161,10 @@ class _PeopleScreenState extends State<PeopleScreen> {
   Widget buildSearch() => SearchWidget(
     text: query,
     hintText: 'Введите имя, подразделение или email',
-    onChanged: searchBook,
+    onChanged: searchUser,
   );
 
-  void searchBook(String query) {
+  void searchUser(String query) {
     print(query);
     final users = fakeUsers.where((user) {
       final titleLower = user['email'].toString().toLowerCase();

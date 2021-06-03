@@ -66,6 +66,8 @@ class _DepartmentsState extends State<Departments > {
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
             scrollable: true,
             title: Center(
               child: Text('Создание нового отдела'),
@@ -101,6 +103,8 @@ class _DepartmentsState extends State<Departments > {
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
             scrollable: true,
             title: Center(
               child: Text(department['name']),
@@ -151,10 +155,10 @@ class _DepartmentsState extends State<Departments > {
   Widget buildSearch() => SearchWidget(
     text: query,
     hintText: 'Введите название подразделения',
-    onChanged: searchBook,
+    onChanged: searchDepartment,
   );
 
-  void searchBook(String query) {
+  void searchDepartment(String query) {
     print(query);
     final users = DEPARTMENTS_FAKE.where((department) {
       final titleLower = department['name'].toString().toLowerCase();

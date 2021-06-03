@@ -90,16 +90,12 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
       height: 700,
       width: 1000,
       //color: Colors.red,
-      child: ListView(
-        children: <Widget>[
-          Container(
-            padding: EdgeInsets.all(10.0),
-            child: Form(
-              key: globalFormKey,
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        child: Form(
+          key: globalFormKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Row(
@@ -115,8 +111,6 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
                       ],
                     ),
 
-                    SizedBox(height: 50),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -128,8 +122,6 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
                         )
                       ],
                     ),
-
-                    SizedBox(height: 50),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,8 +135,6 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
                       ],
                     ),
 
-                    SizedBox(height: 50),
-
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -156,31 +146,27 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
                         ]
                     ),
 
-                    SizedBox(height: 50),
-
-                    SingleChildScrollView(
-                      child: Text(
-                        widget.task['content'],
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
+                    Container(
+                      height: 300.0,
+                      child:                     SingleChildScrollView(
+                        child: Text(
+                          '      ' + widget.task['content'],
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
 
-                    SizedBox(height: 50),
-
                     managersActionState(context),
-
-                    SizedBox(height: 50),
-
                   ],
                 ),
               ),
             ),
-          ),
-        ],
-      ),
+
+
     );
   }
 
@@ -235,7 +221,7 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
               ],
             ),
 
-            SizedBox(height: 50),
+            SizedBox(height: 20),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -282,7 +268,7 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
               ],
             ),
 
-            SizedBox(height: 50),
+            SizedBox(height: 20),
 
             buttomButtons(context),
           ],

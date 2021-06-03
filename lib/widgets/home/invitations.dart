@@ -33,13 +33,13 @@ class _InvitationsScreenState extends State<InvitationsScreen> {
             itemBuilder: (BuildContext context, int index){
               final invitation = invitationsList[index];
 
-              return buildInvitation(invitation);
+              return buildInvitation(invitation, index);
             }
         )
     );
   }
 
-  Widget buildInvitation(var invitation) => ListTile(
+  Widget buildInvitation(invitation, index) => ListTile(
       title: Text('От кого: ' + invitation['invited_by_fullname']),
       subtitle: Text('Позиция: ' + invitation['position']),
       trailing: Container(

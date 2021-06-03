@@ -1,6 +1,7 @@
 import 'package:diploma_v1/fake_data/position_requests.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class RequestsScreen extends StatefulWidget {
   RequestsScreen({Key key}) : super(key: key);
@@ -23,17 +24,80 @@ class _RequestsScreenState extends State<RequestsScreen> {
     return body();
   }
 
-  Widget body () {
-    return Container(
-        child: ListView.builder(
-            padding: EdgeInsets.all(8),
-            itemCount: requestsList.length,
-            itemBuilder: (BuildContext context, int index){
-              final invitation = requestsList[index];
+  _handleCreatePositionRequest(){}
+  void _handleDialogCreateRequest(){
+    createRequest(context);
+  }
 
-              return buildInvitation(invitation);
-            }
+  Future<void> createRequest(context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            scrollable: true,
+            title: Center(
+              child: Text('Cоздание заявки на вступление в должность'),
+            ),
+            content: Stack(
+              overflow: Overflow.visible,
+              children: <Widget>[
+                Positioned(
+                  right: -50.0,
+                  top: -90.0,
+                  child: InkResponse(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CircleAvatar(
+                      child: Icon(Icons.close),
+                      backgroundColor: Colors.red,
+                    ),
+                  ),
+                ),
+
+                Text('fdsf'),
+                //taskFilter(task),
+              ],
+            )
+        );
+      },
+    );
+  }
+
+  Widget body () {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+      children: [
+       Row(
+         mainAxisAlignment: MainAxisAlignment.end,
+
+         children: [
+           Container(
+             margin: EdgeInsets.only(top: 20.0, bottom: 20.0, right: 20.0),
+             child: ElevatedButton(
+                 onPressed: _handleDialogCreateRequest,
+                 child: Text('Создать заявку на должность')
+             ),
+           ),
+         ],
+       ),
+
+        Expanded(
+            child: ListView.builder(
+                padding: EdgeInsets.all(8),
+                itemCount: requestsList.length,
+                itemBuilder: (BuildContext context, int index){
+                  final invitation = requestsList[index];
+                  return buildInvitation(invitation);
+                }
+            )
         )
+
+     ],
     );
   }
 
