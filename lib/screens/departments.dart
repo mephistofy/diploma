@@ -1,4 +1,6 @@
 import 'package:diploma_v1/fake_data/departments.dart';
+import 'package:diploma_v1/helpers/button_styled.dart';
+import 'package:diploma_v1/helpers/hover_container.dart';
 import 'package:diploma_v1/side_drawers/app_bar.dart';
 import 'package:diploma_v1/side_drawers/side_drawers.dart';
 import 'package:diploma_v1/widgets/departments/department_top_manager/department_action.dart';
@@ -34,6 +36,9 @@ class _DepartmentsState extends State<Departments > {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              SizedBox(
+                width: 30.0,
+              ),
               Flexible(
                   child: buildSearch()
               ),
@@ -41,12 +46,13 @@ class _DepartmentsState extends State<Departments > {
               SizedBox(
                 width: 30.0,
               ),
-              ElevatedButton(
-                  onPressed: performAddDepartment,
-                  child: Text('Добавить отдел')
+              button_styled(
+                action: performAddDepartment,
+                child: Text('Добавить отдел')
               ),
+
               SizedBox(
-                width: 30.0,
+                width: 60.0,
               ),
             ],
           ),
@@ -147,10 +153,17 @@ class _DepartmentsState extends State<Departments > {
     );
   }
 
-  Widget buildDepartment(var department) => ListTile(
-      title: Text(department['name']),
-      onTap: () => showDepartment(context, department)
+  Widget buildDepartment(var department) => hover_container(
+    height: 50.0,
+    hoverHeight: 60.0,
+    margin: EdgeInsets.only(top: 10.0, left: 30.0, right: 30.0),
+    hoverMargin: EdgeInsets.all(20.0),
+    child: ListTile(
+        title: Text(department['name']),
+        onTap: () => showDepartment(context, department)
+    )
   );
+
 
   Widget buildSearch() => SearchWidget(
     text: query,

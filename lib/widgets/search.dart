@@ -26,12 +26,15 @@ class _SearchWidgetState extends State<SearchWidget> {
     final style = widget.text.isEmpty ? styleHint : styleActive;
 
     return Container(
-      height: 42,
+      height: 50,
       margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(20),
         color: Colors.white,
-        border: Border.all(color: Colors.black26),
+        border: Border.all(
+            width: 2,
+            color: Colors.black
+        ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: TextField(
@@ -49,7 +52,10 @@ class _SearchWidgetState extends State<SearchWidget> {
           )
               : null,
           hintText: widget.hintText,
-          hintStyle: style,
+          hintStyle: TextStyle(
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w100
+          ),
           border: InputBorder.none,
         ),
         style: style,

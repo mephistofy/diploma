@@ -34,6 +34,7 @@ dependencies:
   shared_preferences: ^2.0.5
   pie_chart: 5.0.0
   url_launcher: ^6.0.4
+  hovering: ^1.0.4
 
 dev_dependencies:
   flutter_test:

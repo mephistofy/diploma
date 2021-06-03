@@ -1,3 +1,4 @@
+import 'package:diploma_v1/constants/colors.dart';
 import 'package:diploma_v1/helpers/shared_prefs_helper.dart';
 import 'package:diploma_v1/widgets/tasks/tasks.dart';
 import 'package:flutter/material.dart';
@@ -28,10 +29,11 @@ class TasksScreen extends StatelessWidget {
           child: Column(
             children: [
               TabBar(
-                  unselectedLabelColor: Colors.black,
-                  labelColor: Colors.blue,
+                  unselectedLabelColor: mainColor,
+                  labelColor: additionalColor,
                   tabs: [
                     Tab(
+
                       child: Text(
                         'Доступные заявки',
                         //style: TextStyle(fontFamily: "BarlowBold", color: Colors.black),

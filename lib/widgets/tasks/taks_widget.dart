@@ -1,4 +1,5 @@
 import 'package:diploma_v1/helpers/box_decoration.dart';
+import 'package:diploma_v1/helpers/hover_container.dart';
 import 'package:diploma_v1/widgets/search.dart';
 import 'package:diploma_v1/widgets/tasks/unsorted_task_action.dart';
 import 'package:diploma_v1/widgets/tasks/unstartedTask.dart';
@@ -169,9 +170,7 @@ class _TasksDepartmentWidgetState extends State<TasksDepartmentWidget> {
     );
   }
 
-  Widget buildDepartment(task, context) => Ink(
-    decoration: boxDecoration(),
-    //color: Colors.lightGreen,
+  Widget buildDepartment(task, context) => hover_container(
     child: ListTile(
         title: textForTitle(task),
         subtitle: getText(task['content'], context),

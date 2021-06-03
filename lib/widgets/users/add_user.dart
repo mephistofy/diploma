@@ -1,5 +1,6 @@
 import 'package:diploma_v1/fake_data/departments.dart';
 import 'package:diploma_v1/fake_data/roles.dart';
+import 'package:diploma_v1/helpers/button_styled.dart';
 import 'package:flutter/material.dart';
 
 /// Form widgets are stateful widgets
@@ -202,8 +203,8 @@ class _PeopleAddFormState extends State<PeopleAddForm> {
                           width: 10.0,
                         ),
 
-                        ElevatedButton(
-                            onPressed: _handleUpdate,
+                        button_styled(
+                          action: _handleUpdate,
                             child: Text('Создать сотрудника')
                         ),
                       ],

@@ -1,3 +1,4 @@
+import 'package:diploma_v1/constants/colors.dart';
 import 'package:diploma_v1/helpers/shared_prefs_helper.dart';
 import 'package:diploma_v1/models/user.dart';
 import 'package:diploma_v1/screens/log_out.dart';
@@ -57,7 +58,7 @@ class SideDrawer extends StatelessWidget {
           child: DrawerHeader(
             child: _getHeadSideDrawerWidget(user),
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: additionalColor,
             ),
           ),
         ),

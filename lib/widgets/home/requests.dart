@@ -1,4 +1,6 @@
 import 'package:diploma_v1/fake_data/position_requests.dart';
+import 'package:diploma_v1/helpers/button_styled.dart';
+import 'package:diploma_v1/helpers/hover_container.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -74,15 +76,11 @@ class _RequestsScreenState extends State<RequestsScreen> {
       children: [
        Row(
          mainAxisAlignment: MainAxisAlignment.end,
-
          children: [
-           Container(
-             margin: EdgeInsets.only(top: 20.0, bottom: 20.0, right: 20.0),
-             child: ElevatedButton(
-                 onPressed: _handleDialogCreateRequest,
-                 child: Text('Создать заявку на должность')
-             ),
-           ),
+           button_styled(
+             padding: EdgeInsets.all(20.0),
+             child: Text('Создать запрос на вступление в должность')
+           )
          ],
        ),
 

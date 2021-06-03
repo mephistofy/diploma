@@ -1,5 +1,6 @@
 import 'package:diploma_v1/fake_data/departments.dart';
 import 'package:diploma_v1/fake_data/roles.dart';
+import 'package:diploma_v1/helpers/button_styled.dart';
 import 'package:flutter/material.dart';
 
 /// Form widgets are stateful widgets
@@ -16,10 +17,6 @@ class _DepartmentAddFormState extends State<DepartmentAddForm> {
 
   void _handleCreate(){
 
-  }
-
-  void _add(){
-    _handleCreate();
   }
 
   @override
@@ -97,9 +94,9 @@ class _DepartmentAddFormState extends State<DepartmentAddForm> {
                           width: 10.0,
                         ),
 
-                        ElevatedButton(
-                            //onPressed: _handleUpdate,
-                            child: Text('Создать')
+                        button_styled(
+                          action: _handleCreate,
+                          child: Text('Создать')
                         ),
                       ],
                     )

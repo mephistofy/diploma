@@ -1,5 +1,6 @@
 import 'package:diploma_v1/fake_data/departments.dart';
 import 'package:diploma_v1/fake_data/roles.dart';
+import 'package:diploma_v1/helpers/button_styled.dart';
 import 'package:flutter/material.dart';
 
 /// Form widgets are stateful widgets
@@ -160,13 +161,13 @@ class _DepartmentUpdateFormState extends State<DepartmentUpdateForm> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(
-                            onPressed: _delete,
-                            child: Text('Удалить отдел')
+                        button_styled(
+                          action: _delete,
+                          child: Text('Удалить отдел')
                         ),
 
-                        ElevatedButton(
-                            onPressed: _handleUpdate,
+                        button_styled(
+                            action: _handleUpdate,
                             child: Text('Обновить отдел')
                         ),
                       ],

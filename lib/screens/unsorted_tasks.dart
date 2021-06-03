@@ -1,10 +1,13 @@
 import 'package:diploma_v1/fake_data/unsorted_tasks.dart';
 import 'package:diploma_v1/helpers/box_decoration.dart';
+import 'package:diploma_v1/helpers/hover_container.dart';
 import 'package:diploma_v1/side_drawers/app_bar.dart';
 import 'package:diploma_v1/side_drawers/side_drawers.dart';
 import 'package:diploma_v1/widgets/search.dart';
 import 'package:diploma_v1/widgets/tasks/unsorted_task_action.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:hovering/hovering.dart';
 
 class UnsortedTasks extends StatefulWidget {
   UnsortedTasks ({Key key}) : super(key: key);
@@ -120,8 +123,7 @@ class _UnsortedTasksState extends State<UnsortedTasks> {
     );
   }
 
-  Widget buildUnsortedTask(unsortedTask, context) => Ink(
-    decoration: boxDecoration(),
+  Widget buildUnsortedTask(unsortedTask, context) => hover_container(
     child: ListTile(
         title: Text(
           unsortedTask['id'].toString() + "\n" + "\n" +
@@ -129,8 +131,8 @@ class _UnsortedTasksState extends State<UnsortedTasks> {
               unsortedTask['created_at'].toString() + "\n",
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold
           ),
         ),
         subtitle: getText(unsortedTask['content'], context),

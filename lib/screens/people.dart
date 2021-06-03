@@ -1,4 +1,6 @@
 import 'package:diploma_v1/fake_data/users.dart';
+import 'package:diploma_v1/helpers/button_styled.dart';
+import 'package:diploma_v1/helpers/hover_container.dart';
 import 'package:diploma_v1/side_drawers/app_bar.dart';
 import 'package:diploma_v1/side_drawers/side_drawers.dart';
 import 'package:diploma_v1/widgets/users/add_user.dart';
@@ -34,6 +36,9 @@ class _PeopleScreenState extends State<PeopleScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                SizedBox(
+                  width: 30.0,
+                ),
                 Flexible(
                     child: buildSearch()
                 ),
@@ -41,12 +46,13 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 SizedBox(
                   width: 30.0,
                 ),
-                ElevatedButton(
-                    onPressed: performAddUser,//performAddDepartment,
-                    child: Text('Добавить сотрудника')
+                button_styled(
+                  action: performAddUser,
+                  child: Text('Добавить сотрудника')
                 ),
+
                 SizedBox(
-                  width: 30.0,
+                  width: 60.0,
                 ),
               ],
             ),
@@ -148,14 +154,22 @@ class _PeopleScreenState extends State<PeopleScreen> {
     );
   }
 
-  Widget buildUser(var user) => ListTile(
-    leading: CircleAvatar(
-        radius: 30,
-        backgroundImage: NetworkImage(user['avatar'])),
-    title: Text(user['fullname']),
-    subtitle: Text(user['email']),
-    trailing: user['department_name'] != null ? Text(user['department_name']) : Text(''),
-      onTap: () => showUser(context, user)
+  Widget buildUser(var user) => hover_container(
+      height: 80.0,
+      hoverHeight: 100.0,
+      padding: EdgeInsets.only(top: 5.0),
+      hoverPadding: EdgeInsets.only(top: 10.0),
+      margin: EdgeInsets.only(top: 10.0, left: 30.0, right: 30.0),
+      hoverMargin: EdgeInsets.all(20.0),
+    child: ListTile(
+        leading: CircleAvatar(
+            radius: 30,
+            backgroundImage: NetworkImage(user['avatar'])),
+        title: Text(user['fullname']),
+        subtitle: Text(user['email']),
+        trailing: user['department_name'] != null ? Text(user['department_name']) : Text(''),
+        onTap: () => showUser(context, user)
+    )
   );
 
   Widget buildSearch() => SearchWidget(

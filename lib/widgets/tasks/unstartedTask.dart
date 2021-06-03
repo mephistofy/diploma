@@ -1,6 +1,7 @@
 import 'package:diploma_v1/fake_data/departments.dart';
 import 'package:diploma_v1/fake_data/tasks.dart';
 import 'package:diploma_v1/fake_data/users.dart';
+import 'package:diploma_v1/helpers/button_styled.dart';
 import 'package:diploma_v1/helpers/shared_prefs_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -87,7 +88,7 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 700,
+      height: 750,
       width: 1000,
       //color: Colors.red,
       child: Container(
@@ -214,10 +215,10 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
                   width: 10.0,
                 ),
 
-                ElevatedButton(
-                    onPressed: _handleUpdate,
-                    child: Text('Перенаправить')
-                ),
+                button_styled(
+                  action: _handleUpdate,
+                  child: Text('Перенаправить')
+                )
               ],
             ),
 
@@ -260,8 +261,8 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
                   width: 10.0,
                 ),
 
-                ElevatedButton(
-                    onPressed: _handleUpdate,
+                button_styled(
+                    action: _handleUpdate,
                     child: Text('Назначить')
                 ),
 
@@ -278,8 +279,8 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ElevatedButton(
-                onPressed: _handleUpdate,
+            button_styled(
+                action: _handleUpdate,
                 child: Text('Начать задачу')
             ),
           ],
@@ -290,9 +291,9 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
       return  Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ElevatedButton(
-            onPressed: _handleUpdate,
-            child: Text('Завершить')
+          button_styled(
+              action: _handleUpdate,
+              child: Text('Завершить')
           ),
         ]
       );
@@ -307,8 +308,9 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Expanded(
-              child:           ElevatedButton(
-                  onPressed: _delete,
+              child:
+              button_styled(
+                  action: _handleUpdate,
                   child: Text('Удалить задачу')
               ),
           ),
@@ -317,8 +319,9 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
           ),
 
           Expanded(
-              child:           ElevatedButton(
-                  onPressed: _handleUpdate,
+              child:
+              button_styled(
+                  action: _handleUpdate,
                   child: Text('Обновить задачу')
               ),
           ),
@@ -328,8 +331,8 @@ class _UnstartedUpdateFormState extends State<UnstartedTaskUpdateForm> {
           ),
 
           Expanded(
-              child:           ElevatedButton(
-                  onPressed: _handleUpdate,
+              child: button_styled(
+                  action: _handleUpdate,
                   child: Text('Начать задачу')
               ),
           ),

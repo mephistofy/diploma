@@ -88,10 +88,11 @@ class _TasksWidgetState extends State<TasksWidget> {
         return Scaffold(
           appBar: AppBar(
             toolbarHeight: 50.0,
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.white,
             bottom: TabBar(
               isScrollable: true,
-              unselectedLabelColor: Colors.white,
+              unselectedLabelColor: Colors.black,
+              labelColor: Colors.blue,
               indicatorColor: Colors.blue,
               tabs: tabs,
             ),

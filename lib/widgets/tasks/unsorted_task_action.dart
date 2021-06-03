@@ -1,4 +1,5 @@
 import 'package:diploma_v1/fake_data/departments.dart';
+import 'package:diploma_v1/helpers/button_styled.dart';
 import 'package:diploma_v1/helpers/popup_response_message.dart';
 import 'package:diploma_v1/helpers/popup_width.dart';
 import 'package:diploma_v1/helpers/show_snack_bar.dart';
@@ -105,9 +106,10 @@ class _UnsortedTaskUpdateFormState extends State<UnsortedTaskUpdateForm> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ElevatedButton(
-                          onPressed: () => _handleRedirect(context),
-                          child: Text('Направить в : ')
+                      button_styled(
+                        action: _handleRedirect,
+                        param: context,
+                        child: Text('Направить в : ')
                       ),
 
                       DropdownButton<String>(
