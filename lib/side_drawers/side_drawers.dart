@@ -21,12 +21,25 @@ class SideDrawer extends StatelessWidget {
 
             SizedBox(height: 20),
 
-            CircleAvatar(
-              radius: 75.0,
-              backgroundImage:
-              NetworkImage(user.avatar),
-              backgroundColor: Colors.transparent,
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            boxShadow: [BoxShadow(blurRadius: 10, color: Colors.black, spreadRadius: 5)],
+            border: new Border.all(
+              color: Colors.white,
+              width: 4.0,
             ),
+          ),
+
+          child:             CircleAvatar(
+            radius: 65.0,
+            backgroundImage:
+            NetworkImage(user.avatar),
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+
 
             SizedBox(height: 10),
 

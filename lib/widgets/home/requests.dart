@@ -32,6 +32,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
   }
 
   Future<void> createRequest(context) async {
+
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
@@ -70,16 +71,24 @@ class _RequestsScreenState extends State<RequestsScreen> {
   }
 
   Widget body () {
+    final width = MediaQuery.of(context).size.width;
+    final mobile = 11.0;
+    final web = 20.0;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
       children: [
        Row(
          mainAxisAlignment: MainAxisAlignment.end,
          children: [
            button_styled(
              padding: EdgeInsets.all(20.0),
-             child: Text('Создать запрос на вступление в должность')
+             child: Text(
+                 'Создать запрос на вступление в должность',
+               style: TextStyle(
+                 fontSize: width > 320 ? web : mobile,
+               ),
+             )
            )
          ],
        ),
@@ -99,42 +108,56 @@ class _RequestsScreenState extends State<RequestsScreen> {
     );
   }
 
-  Widget buildInvitation(var invitation) => ListTile(
-    title: Text('Должность: ' + invitation['position']),
-    subtitle: Text('Дата: ' + invitation['created_at'].toString()),
-    trailing: Container(
-      width: 200.0,
-      child: invitation['status'] != null
-          ? Container(
-              child: Center(
-                child: invitation['status'] == true
-                    ? Text(
-                        'Принято',
-                         style: TextStyle(
-                           fontSize: 15.0,
-                           color: Colors.green,
-                         ),
-                      )
-                    : Text(
-                        'Отклонено',
-                         style: TextStyle(
-                           fontSize: 15.0,
-                           color: Colors.red,
-                         ),
-                      ),
-              ),
-            )
-          : Container(
-              child: Center(
-                child: Text(
-                        'Рассматривается',
-                        style: TextStyle(
-                          fontSize: 15.0,
-                          color: Colors.grey,
-                        ),
+  Widget buildInvitation(var invitation) {
+    final width = MediaQuery.of(context).size.width;
+
+    return ListTile(
+      title: Text(
+          'Должность: ' + '\n' + invitation['position'],
+        style: TextStyle(
+          fontSize: width > 320 ? 15.0 : 14.0,
+        ),
+      ),
+      subtitle: Text(
+          'Дата: ' + '\n' + invitation['created_at'].toString(),
+        style: TextStyle(
+          fontSize: width > 320 ? 15.0 : 13.0,
+        ),
+      ),
+      trailing: Container(
+          width: 100.0,
+          child: invitation['status'] != null
+              ? Container(
+            child: Center(
+              child: invitation['status'] == true
+                  ? Text(
+                'Принято',
+                style: TextStyle(
+                  fontSize: width > 320 ? 15.0 : 12.0,
+                  color: Colors.green,
+                ),
+              )
+                  : Text(
+                'Отклонено',
+                style: TextStyle(
+                  fontSize: width > 320 ? 15.0 : 12.0,
+                  color: Colors.red,
                 ),
               ),
+            ),
           )
-    ),
-  );
+              : Container(
+            child: Center(
+              child: Text(
+                'Рассматривается',
+                style: TextStyle(
+                  fontSize: width > 320 ? 15.0 : 12.0,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          )
+      ),
+    );
+  }
 }

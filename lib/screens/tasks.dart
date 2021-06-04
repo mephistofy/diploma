@@ -11,7 +11,7 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideDrawer(),
-      appBar: CustomAppBar('Заявки'),
+      appBar: customAppBar('Заявки', context),
       body: byUserDepartmentBuilder(context)
     );
   }

@@ -29,7 +29,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: SideDrawer(),
-        appBar: CustomAppBar('Сотрудники'),
+        appBar: customAppBar('Сотрудники', context),
         body:
         Column(
           children: <Widget>[

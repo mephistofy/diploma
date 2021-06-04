@@ -30,7 +30,7 @@ class _UnsortedTasksState extends State<UnsortedTasks> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideDrawer(),
-      appBar: CustomAppBar('Несортированные заявки'),
+      appBar: customAppBar('Несортированные заявки', context),
       body:
       Column(
         children: <Widget>[

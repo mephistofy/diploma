@@ -1,3 +1,4 @@
+import 'package:diploma_v1/constants/colors.dart';
 import 'package:diploma_v1/fake_data/departments.dart';
 import 'package:diploma_v1/helpers/button_styled.dart';
 import 'package:diploma_v1/helpers/hover_container.dart';
@@ -27,13 +28,15 @@ class _DepartmentsState extends State<Departments > {
   }
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: SideDrawer(),
-      appBar: CustomAppBar('Отделы'),
+      appBar: customAppBar('Отделы', context),
       body:
       Column(
         children: <Widget>[
-          Row(
+          width > 320.0
+          ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
@@ -48,14 +51,49 @@ class _DepartmentsState extends State<Departments > {
               ),
               button_styled(
                 action: performAddDepartment,
+                padding: width <= 320 ? EdgeInsets.only(top: 10.0,right: 20.0) : EdgeInsets.all(0.0),
                 child: Text('Добавить отдел')
               ),
 
-              SizedBox(
-                width: 60.0,
-              ),
             ],
+          )
+          : Container(
+            height: 150.0,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(color: Colors.black),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 10,
+                  blurRadius: 10,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 30.0,
+                ),
+                Flexible(
+                    child: buildSearch()
+                ),
+
+                SizedBox(
+                  width: 30.0,
+                ),
+                button_styled(
+                    action: performAddDepartment,
+                    padding: width <= 320 ? EdgeInsets.only(top: 10.0,right: 20.0, bottom: 20.0 ) : EdgeInsets.all(0.0),
+                    child: Text('Добавить отдел')
+                ),
+
+              ],
+            ),
           ),
+
           body(),
         ],
       ),
@@ -67,22 +105,29 @@ class _DepartmentsState extends State<Departments > {
   }
   
   Future<void> addDepartment(context) async {
+    final width = MediaQuery.of(context).size.width;
+
     return showDialog<void>(
       context: context,
       barrierDismissible: true, // user must tap button!
       builder: (BuildContext context) {
-        return AlertDialog(
+        return width > 320.0 ? AlertDialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             scrollable: true,
             title: Center(
-              child: Text('Создание нового отдела'),
+              child: Text(
+                  'Создание нового отдела',
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+              ),
             ),
             content: Stack(
               overflow: Overflow.visible,
               children: <Widget>[
                 Positioned(
-                  right: -50.0,
+                  right: -50.0 ,
                   top: -90.0,
                   child: InkResponse(
                     onTap: () {
@@ -98,6 +143,12 @@ class _DepartmentsState extends State<Departments > {
                 DepartmentAddForm(),
               ],
             )
+        )
+            : Scaffold(
+          appBar: AppBar(
+            backgroundColor: mainColor,
+          ),
+        body: DepartmentAddForm(),
         );
       },
     );

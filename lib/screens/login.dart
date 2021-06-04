@@ -79,8 +79,9 @@ class _Login extends State<Login> {
 
       body: Center(
           child: Container(
-              width: 448.0,
+              width:  448.0 ,
               height: 348.0,
+              margin: EdgeInsets.all(20.0),
 
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -111,7 +112,7 @@ class _Login extends State<Login> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               SizedBox(
-                                height: 50.0,
+                                height: 30.0,
                               ),
                               TextFormField(
                                 key: Key("_username"),
@@ -148,7 +149,7 @@ class _Login extends State<Login> {
                               const SizedBox(height: 10.0),
 
                               SizedBox(
-                                height: 50.0,
+                                height: 30.0,
                               ),
 
                               Center(

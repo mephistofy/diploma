@@ -7,11 +7,21 @@ import 'package:diploma_v1/widgets/home/statistics.dart';
 import 'package:diploma_v1/side_drawers/app_bar.dart';
 
 class App extends StatelessWidget {
+  Widget styledText({fontSize: 14.0, text: ''}) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: fontSize,
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
+    final tabsFontSize = MediaQuery.of(context).size.width <= 320 ? 11.0 : 14.0;
+
     return Scaffold(
         drawer: SideDrawer(),
-        appBar: CustomAppBar('Главная страница'),
+        appBar: customAppBar('Главная страница', context),
         body: ListView(children: [
           DefaultTabController(
               length: 3,
@@ -24,26 +34,26 @@ class App extends StatelessWidget {
                       labelColor: Colors.blue,
                       tabs: [
                         Tab(
-                          child: Text(
-                            'Моя статистика',
-                            //style: TextStyle(fontFamily: "BarlowBold", color: Colors.black),
-                          ),
+                          child: styledText(
+                            text: 'Моя статистика',
+                            fontSize: tabsFontSize
+                          )
                         ),
                         Tab(
-                          child: Text(
-                            'Приглашения на должность',
-                            //style: TextStyle(fontFamily: "BarlowBold", color: Colors.black),
-                          ),
+                          child: styledText(
+                              text:  'Приглашения на должность',
+                              fontSize: tabsFontSize
+                          )
                         ),
                         Tab(
-                          child: Text(
-                            'Просьбы о вступлении в должность',
-                            //style: TextStyle(fontFamily: "BarlowBold", color: Colors.black),
-                          ),
+                          child: styledText(
+                            text: 'Просьбы о вступлении в должность',
+                            fontSize: tabsFontSize
+                          )
                         ),
                       ]),
                   Container(
-                      height: 900.0,
+                      height: 1200.0,
                       child: TabBarView(
                         children: [
                           Statistics(),

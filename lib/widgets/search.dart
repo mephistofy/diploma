@@ -21,13 +21,14 @@ class _SearchWidgetState extends State<SearchWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     final styleActive = TextStyle(color: Colors.black);
     final styleHint = TextStyle(color: Colors.black54);
     final style = widget.text.isEmpty ? styleHint : styleActive;
 
     return Container(
       height: 50,
-      margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+      margin: width > 320 ? const EdgeInsets.fromLTRB(16, 16, 16, 16) : const EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
