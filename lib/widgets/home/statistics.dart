@@ -158,11 +158,12 @@ class _StatisticsState extends State<Statistics> {
   }
 
   Widget chart() {
+    final width = MediaQuery.of(context).size.width;
     return PieChart(
       dataMap: dataMap,
       animationDuration: Duration(milliseconds: 800),
       chartLegendSpacing: 32,
-      chartRadius: MediaQuery.of(context).size.width / 3.2,
+      chartRadius: width / 3.3,
       colorList: [Colors.green, Colors.blue],
       initialAngleInDegree: 0,
       chartType: ChartType.ring,

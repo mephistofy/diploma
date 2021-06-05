@@ -31,7 +31,7 @@ class _Login extends State<Login> {
     print(_apiResponse.Data);
     CustomSharedPrefs.setObject("user", user);
 
-    Modular.to.navigate('/home');
+    Modular.to.navigate('/splash_screen');
   }
 
   void _showSnackBar(final String msg){

@@ -1,6 +1,7 @@
 import 'package:diploma_v1/fake_data/position_requests.dart';
 import 'package:diploma_v1/helpers/button_styled.dart';
 import 'package:diploma_v1/helpers/hover_container.dart';
+import 'package:diploma_v1/widgets/home/request_add.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -73,7 +74,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
   Widget body () {
     final width = MediaQuery.of(context).size.width;
     final mobile = 11.0;
-    final web = 20.0;
+    final web = 14.0;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,7 +89,8 @@ class _RequestsScreenState extends State<RequestsScreen> {
                style: TextStyle(
                  fontSize: width > 320 ? web : mobile,
                ),
-             )
+             ),
+             action: performAddRequest
            )
          ],
        ),
@@ -105,6 +107,46 @@ class _RequestsScreenState extends State<RequestsScreen> {
         )
 
      ],
+    );
+  }
+
+  void performAddRequest(){
+    requestAdd(context);
+  }
+  Future<void> requestAdd(context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            scrollable: true,
+            title: Center(
+              child: Text('Запрос на вступление в должность'),
+            ),
+            content: Stack(
+              overflow: Overflow.visible,
+              children: <Widget>[
+                Positioned(
+                  right: -50.0,
+                  top: -90.0,
+                  child: InkResponse(
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: CircleAvatar(
+                      child: Icon(Icons.close),
+                      backgroundColor: Colors.red,
+                    ),
+                  ),
+                ),
+
+                RequestAddForm(),
+              ],
+            )
+        );
+      },
     );
   }
 
@@ -125,7 +167,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
         ),
       ),
       trailing: Container(
-          width: 100.0,
+          width: width <= 320.0 ? 100.0 : 150.0,
           child: invitation['status'] != null
               ? Container(
             child: Center(

@@ -121,6 +121,14 @@ class SideDrawer extends StatelessWidget {
           ),
 
         ListTile(
+          leading: Icon(Icons.account_balance_rounded),
+          title: Text('Мой аккаунт'),
+          onTap: () => {
+            Modular.to.pushNamed('/my_account')
+          },
+        ),
+
+        ListTile(
           leading: Icon(Icons.exit_to_app),
           title: Text('Выйти'),
           onTap: () => {

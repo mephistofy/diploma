@@ -1,5 +1,4 @@
 
-
 import 'package:diploma_v1/constants/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,7 @@ import 'package:hovering/hovering.dart';
 
 import 'box_decoration.dart';
 
-Widget hover_container(
+Widget hover_avatar(
     {
       child: CircularProgressIndicator,
       width: 200.0,
@@ -20,7 +19,6 @@ Widget hover_container(
       margin: const EdgeInsets.all(0.0),
       padding: const EdgeInsets.all(0.0),
       alignment: null,
-
     }
     )
 {
@@ -34,15 +32,6 @@ Widget hover_container(
     margin: margin,
     padding: padding,
     alignment: alignment,
-    decoration: boxDecoration(color: Colors.white),
-    hoverDecoration: boxDecoration(color: Colors.white),
-    hoverForegroundDecoration: BoxDecoration(
-      border: Border.all(
-        color: additionalColor,
-        width: 5,
-      ),
-      borderRadius: BorderRadius.circular(20.0),
-    ),
     child: child,
   );
 }

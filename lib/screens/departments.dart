@@ -51,7 +51,7 @@ class _DepartmentsState extends State<Departments > {
               ),
               button_styled(
                 action: performAddDepartment,
-                padding: width <= 320 ? EdgeInsets.only(top: 10.0,right: 20.0) : EdgeInsets.all(0.0),
+                padding: EdgeInsets.only(top: 5.0,right: 30.0),
                 child: Text('Добавить отдел')
               ),
 
@@ -86,7 +86,7 @@ class _DepartmentsState extends State<Departments > {
                 ),
                 button_styled(
                     action: performAddDepartment,
-                    padding: width <= 320 ? EdgeInsets.only(top: 10.0,right: 20.0, bottom: 20.0 ) : EdgeInsets.all(0.0),
+                    padding:EdgeInsets.only(top: 10.0,right: 20.0, bottom: 20.0 ),
                     child: Text('Добавить отдел')
                 ),
 

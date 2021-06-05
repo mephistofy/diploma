@@ -189,7 +189,7 @@ class _PeopleUpdateFormState extends State<PeopleUpdateForm> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Flexible(
-                          child: Text('Роли: '),
+                          child: Text('Должности: '),
                         ),
                         Expanded(
                           child: ListView.builder(

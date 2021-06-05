@@ -1,5 +1,7 @@
 import 'package:diploma_v1/screens/departments.dart';
+import 'package:diploma_v1/screens/my_account.dart';
 import 'package:diploma_v1/screens/people.dart';
+import 'package:diploma_v1/screens/splash_screen.dart';
 import 'package:diploma_v1/screens/unsorted_tasks.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -17,10 +19,11 @@ class AppModule extends Module {
   // Provide all the routes for your module
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/login', child: (_, __) => Login()),
-    //ChildRoute('/', child: (_, __) => App()),
+    //ChildRoute('/login', child: (_, __) => Login()),
+    ChildRoute('/splash_screen', child: (_, __) => CustomSplashScreen()),
+    ChildRoute('/login', child: (_, __) => CustomSplashScreen()),
     ChildRoute('/home', child: (_, __) => App()),
-
+    ChildRoute('/my_account', child: (_, __) => MyAccountScreen()),
     ChildRoute('/people', child: (_, __) => PeopleScreen()),
     ChildRoute('/departments', child: (_, __) => Departments()),
     ChildRoute('/unsorted_tasks', child: (_, __) => UnsortedTasks()),
